@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="16 - Create a small notebook-style UI: prompt...", page_icon="🎯")
 
 st.title("🎯 Create a small notebook-style UI: prompt...")

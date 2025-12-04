@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="13 - Add a simple token counter display (esti...", page_icon="🎯")
 
 st.title("🎯 Add a simple token counter display (esti...")

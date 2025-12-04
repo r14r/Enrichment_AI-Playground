@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="71 - Implement a 'rewrite for clarity' tool t...", page_icon="🎯")
 
 st.title("🎯 Implement a 'rewrite for clarity' tool t...")

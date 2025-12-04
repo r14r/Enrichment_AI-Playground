@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="29 - Create a simple 'explain like I'm five' ...", page_icon="🎯")
 
 st.title("🎯 Create a simple 'explain like I'm five' ...")

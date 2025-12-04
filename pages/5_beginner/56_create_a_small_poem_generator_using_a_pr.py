@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="56 - Create a 'small poem generator' using a ...", page_icon="✨")
 
 st.title("✨ Create a 'small poem generator' using a ...")

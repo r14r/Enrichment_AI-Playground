@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="50 - Add a 'simple Q/A with context' widget (...", page_icon="🎯")
 
 st.title("🎯 Add a 'simple Q/A with context' widget (...")

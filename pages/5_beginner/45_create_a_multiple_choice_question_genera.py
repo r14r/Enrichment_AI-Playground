@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="45 - Create a 'multiple choice question gener...", page_icon="✨")
 
 st.title("✨ Create a 'multiple choice question gener...")

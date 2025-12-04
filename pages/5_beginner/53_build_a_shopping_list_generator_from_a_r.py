@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="53 - Build a 'shopping list generator' from a...", page_icon="✨")
 
 st.title("✨ Build a 'shopping list generator' from a...")

@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="97 - Add a 'daily microjournal' prompt that h...", page_icon="🎯")
 
 st.title("🎯 Add a 'daily microjournal' prompt that h...")

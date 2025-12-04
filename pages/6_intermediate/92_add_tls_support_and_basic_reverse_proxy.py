@@ -1,7 +1,4 @@
 import streamlit as st
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="92 - Add TLS support and basic reverse-proxy ...", page_icon="🎯")
 

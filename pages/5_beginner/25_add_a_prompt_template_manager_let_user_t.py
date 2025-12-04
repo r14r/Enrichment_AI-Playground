@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="25 - Add a prompt template manager: let user ...", page_icon="🎯")
 
 st.title("🎯 Add a prompt template manager: let user ...")

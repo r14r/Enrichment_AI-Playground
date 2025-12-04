@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="64 - Create a 'tweet-to-blog-skeleton' genera...", page_icon="✨")
 
 st.title("✨ Create a 'tweet-to-blog-skeleton' genera...")

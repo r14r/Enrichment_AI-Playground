@@ -1,7 +1,4 @@
 import streamlit as st
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="52 - Create an A/B test harness to compare pr...", page_icon="🧪")
 

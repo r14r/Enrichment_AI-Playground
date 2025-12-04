@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="62 - Build a 'grocery recipe recommender' tha...", page_icon="🎯")
 
 st.title("🎯 Build a 'grocery recipe recommender' tha...")

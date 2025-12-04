@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="78 - Build a 'simple change-log writer' from ...", page_icon="🎯")
 
 st.title("🎯 Build a 'simple change-log writer' from ...")

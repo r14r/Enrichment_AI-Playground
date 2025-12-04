@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="79 - Implement a 'grammar quiz' maker that pr...", page_icon="🎯")
 
 st.title("🎯 Implement a 'grammar quiz' maker that pr...")

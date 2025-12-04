@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="61 - Add a 'copy-to-clipboard' button for gen...", page_icon="✨")
 
 st.title("✨ Add a 'copy-to-clipboard' button for gen...")

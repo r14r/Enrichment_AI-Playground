@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="83 - Implement a 'product description to SEO ...", page_icon="🎯")
 
 st.title("🎯 Implement a 'product description to SEO ...")

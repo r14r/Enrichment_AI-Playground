@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="91 - Implement a 'prompt length advisor' that...", page_icon="🎯")
 
 st.title("🎯 Implement a 'prompt length advisor' that...")

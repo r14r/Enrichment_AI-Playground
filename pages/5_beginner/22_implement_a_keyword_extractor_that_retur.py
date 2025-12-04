@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="22 - Implement a keyword extractor that retur...", page_icon="🎯")
 
 st.title("🎯 Implement a keyword extractor that retur...")

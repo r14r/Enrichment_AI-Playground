@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="96 - Create a 'language learning flashcard' g...", page_icon="✨")
 
 st.title("✨ Create a 'language learning flashcard' g...")

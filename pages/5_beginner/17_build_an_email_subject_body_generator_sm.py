@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="17 - Build an email subject/body generator: s...", page_icon="✨")
 
 st.title("✨ Build an email subject/body generator: s...")

@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="46 - Add a 'fill-in-the-blank' exercise creat...", page_icon="🎯")
 
 st.title("🎯 Add a 'fill-in-the-blank' exercise creat...")

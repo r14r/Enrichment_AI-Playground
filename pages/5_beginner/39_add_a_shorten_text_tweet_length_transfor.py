@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="39 - Add a 'shorten text' (tweet-length) tran...", page_icon="🎯")
 
 st.title("🎯 Add a 'shorten text' (tweet-length) tran...")

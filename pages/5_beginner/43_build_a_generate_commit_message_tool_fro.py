@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="43 - Build a 'generate commit message' tool f...", page_icon="✨")
 
 st.title("✨ Build a 'generate commit message' tool f...")

@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="11 - Create a question-answering UI against a...", page_icon="🎯")
 
 st.title("🎯 Create a question-answering UI against a...")

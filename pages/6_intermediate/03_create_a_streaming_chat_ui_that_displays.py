@@ -1,8 +1,4 @@
 import streamlit as st
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-
 from lib.helper_ollama import generate
 
 st.set_page_config(page_title="3 - Create a streaming chat UI", page_icon="💬")

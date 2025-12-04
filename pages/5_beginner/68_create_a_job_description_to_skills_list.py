@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="68 - Create a 'job description to skills list...", page_icon="🎯")
 
 st.title("🎯 Create a 'job description to skills list...")

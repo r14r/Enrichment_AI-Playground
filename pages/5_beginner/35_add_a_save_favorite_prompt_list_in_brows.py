@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="35 - Add a 'save favorite prompt' list in bro...", page_icon="🎯")
 
 st.title("🎯 Add a 'save favorite prompt' list in bro...")

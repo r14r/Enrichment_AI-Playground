@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="65 - Add a 'book blurb' writer for short desc...", page_icon="🎯")
 
 st.title("🎯 Add a 'book blurb' writer for short desc...")

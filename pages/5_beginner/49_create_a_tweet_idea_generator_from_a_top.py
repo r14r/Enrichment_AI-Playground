@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="49 - Create a 'tweet idea' generator from a t...", page_icon="✨")
 
 st.title("✨ Create a 'tweet idea' generator from a t...")

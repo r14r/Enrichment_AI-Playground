@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="31 - Add a UI to show model latency and basic...", page_icon="🎯")
 
 st.title("🎯 Add a UI to show model latency and basic...")

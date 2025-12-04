@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="100 - Create a 'starter README generator' for ...", page_icon="✨")
 
 st.title("✨ Create a 'starter README generator' for ...")

@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="88 - Create a 'creative constraints' generato...", page_icon="✨")
 
 st.title("✨ Create a 'creative constraints' generato...")

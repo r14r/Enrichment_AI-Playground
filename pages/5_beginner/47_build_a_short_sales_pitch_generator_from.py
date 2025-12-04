@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="47 - Build a short 'sales pitch' generator fr...", page_icon="✨")
 
 st.title("✨ Build a short 'sales pitch' generator fr...")

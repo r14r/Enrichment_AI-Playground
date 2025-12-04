@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="23 - Create a simple FAQ generator from a sho...", page_icon="✨")
 
 st.title("✨ Create a simple FAQ generator from a sho...")

@@ -1,7 +1,4 @@
 import streamlit as st
-import sys
-import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="2 - Add a model selector input to the chat a...", page_icon="💬")
 

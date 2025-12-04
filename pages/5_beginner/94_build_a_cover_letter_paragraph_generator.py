@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="94 - Build a 'cover letter paragraph' generat...", page_icon="✨")
 
 st.title("✨ Build a 'cover letter paragraph' generat...")

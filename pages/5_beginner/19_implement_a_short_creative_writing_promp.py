@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="19 - Implement a short creative writing promp...", page_icon="✨")
 
 st.title("✨ Implement a short creative writing promp...")

@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="72 - Create a 'social caption generator' for ...", page_icon="✨")
 
 st.title("✨ Create a 'social caption generator' for ...")

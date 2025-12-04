@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="63 - Implement a 'simple style guide enforcer...", page_icon="🎯")
 
 st.title("🎯 Implement a 'simple style guide enforcer...")

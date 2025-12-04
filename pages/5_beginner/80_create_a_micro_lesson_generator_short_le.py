@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="80 - Create a 'micro-lesson generator' — shor...", page_icon="✨")
 
 st.title("✨ Create a 'micro-lesson generator' — shor...")

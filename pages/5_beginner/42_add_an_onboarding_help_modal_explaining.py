@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="42 - Add an onboarding help modal explaining ...", page_icon="🎯")
 
 st.title("🎯 Add an onboarding help modal explaining ...")

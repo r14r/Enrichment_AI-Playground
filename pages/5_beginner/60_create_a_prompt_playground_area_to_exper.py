@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="60 - Create a 'prompt playground' area to exp...", page_icon="🎯")
 
 st.title("🎯 Create a 'prompt playground' area to exp...")

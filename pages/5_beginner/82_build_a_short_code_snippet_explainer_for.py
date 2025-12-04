@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="82 - Build a 'short code snippet explainer' f...", page_icon="💻")
 
 st.title("💻 Build a 'short code snippet explainer' f...")

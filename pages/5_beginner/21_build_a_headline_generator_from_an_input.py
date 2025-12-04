@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="21 - Build a headline generator from an input...", page_icon="✨")
 
 st.title("✨ Build a headline generator from an input...")

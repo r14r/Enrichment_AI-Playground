@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 st.set_page_config(page_title="75 - Implement a 'two-step prompt chaining' d...", page_icon="🎯")
 
 st.title("🎯 Implement a 'two-step prompt chaining' d...")
