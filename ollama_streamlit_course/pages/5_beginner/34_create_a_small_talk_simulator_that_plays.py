@@ -1,22 +1,38 @@
 import streamlit as st
 
-st.set_page_config(page_title="34 – Create A Small Talk Simulator That Plays", page_icon="📄")
+st.set_page_config(page_title="34 - Create a 'small talk' simulator that pla...", page_icon="💬")
 
-st.title("34 – Create A Small Talk Simulator That Plays")
+st.title("💬 Create a 'small talk' simulator that pla...")
+st.write("""Create a 'small talk' simulator that plays multiple short conversational turns.""")
 
-st.write('Generic text toolbox: basic operations you can apply locally.')
+# Initialize session state
+if "chat_34_messages" not in st.session_state:
+    st.session_state["chat_34_messages"] = []
 
-text = st.text_area('Input text', height=160)
-op = st.selectbox('Operation', ['Echo','Reverse','Uppercase','First sentence','Word count'])
-if st.button('Run'):
-    if op == 'Echo':
-        out = text
-    elif op == 'Reverse':
-        out = text[::-1]
-    elif op == 'Uppercase':
-        out = text.upper()
-    elif op == 'Word count':
-        out = f"Words: {len(text.split())}"
-    else:
-        out = text.split('.')[0]
-    st.code(out)
+# Configuration sidebar
+with st.sidebar:
+    st.header("Settings")
+    model = st.selectbox("Model:", ["llama2", "mistral", "codellama"])
+    temperature = st.slider("Temperature:", 0.0, 1.0, 0.7)
+
+# Display chat messages
+for msg in st.session_state["chat_34_messages"]:
+    with st.chat_message(msg["role"]):
+        st.write(msg["content"])
+
+# Chat input
+if prompt := st.chat_input("Type your message..."):
+    st.session_state["chat_34_messages"].append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
+    
+    # Mock response
+    response = f"[{model}] Response to: {prompt[:50]}..."
+    st.session_state["chat_34_messages"].append({"role": "assistant", "content": response})
+    with st.chat_message("assistant"):
+        st.write(response)
+
+# Clear button
+if st.button("Clear Chat"):
+    st.session_state["chat_34_messages"] = []
+    st.rerun()

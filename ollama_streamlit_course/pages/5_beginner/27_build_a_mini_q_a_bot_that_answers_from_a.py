@@ -1,22 +1,26 @@
 import streamlit as st
 
-st.set_page_config(page_title="27 – Build A Mini Q A Bot That Answers From A", page_icon="📄")
+st.set_page_config(page_title="27 - Build a mini Q&A bot that answers from a...", page_icon="📁")
 
-st.title("27 – Build A Mini Q A Bot That Answers From A")
+st.title("📁 Build a mini Q&A bot that answers from a...")
+st.write("""Build a mini Q&A bot that answers from a single small uploaded text file.""")
 
-st.write('Generic text toolbox: basic operations you can apply locally.')
+uploaded_file = st.file_uploader("Upload a file:", type=["txt", "csv", "json", "pdf"])
 
-text = st.text_area('Input text', height=160)
-op = st.selectbox('Operation', ['Echo','Reverse','Uppercase','First sentence','Word count'])
-if st.button('Run'):
-    if op == 'Echo':
-        out = text
-    elif op == 'Reverse':
-        out = text[::-1]
-    elif op == 'Uppercase':
-        out = text.upper()
-    elif op == 'Word count':
-        out = f"Words: {len(text.split())}"
-    else:
-        out = text.split('.')[0]
-    st.code(out)
+if uploaded_file:
+    st.success(f"Uploaded: {uploaded_file.name}")
+    st.metric("File Size", f"{uploaded_file.size} bytes")
+    
+    if uploaded_file.type == "text/plain":
+        content = uploaded_file.read().decode()
+        st.subheader("File Content")
+        st.text_area("Content:", content, height=200)
+        
+        st.subheader("Analysis")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Lines", len(content.split("\n")))
+        with col2:
+            st.metric("Words", len(content.split()))
+else:
+    st.info("Upload a file to get started.")

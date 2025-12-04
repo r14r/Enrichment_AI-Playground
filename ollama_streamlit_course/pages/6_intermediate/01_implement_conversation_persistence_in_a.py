@@ -1,7 +1,38 @@
 import streamlit as st
 
-st.set_page_config(page_title="1 – Implement Conversation Persistence In A", page_icon="📄")
+st.set_page_config(page_title="1 - Implement conversation persistence in a ...", page_icon="💬")
 
-st.title("1 – Implement Conversation Persistence In A")
+st.title("💬 Implement conversation persistence in a ...")
+st.write("""Implement conversation persistence in a small DB (sqlite) with per-user conversations.""")
 
-st.write("This is a stub page for the task: Implement Conversation Persistence In A")
+# Initialize session state
+if "chat_1_messages" not in st.session_state:
+    st.session_state["chat_1_messages"] = []
+
+# Configuration sidebar
+with st.sidebar:
+    st.header("Settings")
+    model = st.selectbox("Model:", ["llama2", "mistral", "codellama"])
+    temperature = st.slider("Temperature:", 0.0, 1.0, 0.7)
+
+# Display chat messages
+for msg in st.session_state["chat_1_messages"]:
+    with st.chat_message(msg["role"]):
+        st.write(msg["content"])
+
+# Chat input
+if prompt := st.chat_input("Type your message..."):
+    st.session_state["chat_1_messages"].append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
+    
+    # Mock response
+    response = f"[{model}] Response to: {prompt[:50]}..."
+    st.session_state["chat_1_messages"].append({"role": "assistant", "content": response})
+    with st.chat_message("assistant"):
+        st.write(response)
+
+# Clear button
+if st.button("Clear Chat"):
+    st.session_state["chat_1_messages"] = []
+    st.rerun()

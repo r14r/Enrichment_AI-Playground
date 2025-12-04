@@ -1,22 +1,25 @@
 import streamlit as st
 
-st.set_page_config(page_title="81 – Add A Customer Reply Draft Generator Fro", page_icon="📄")
+st.set_page_config(page_title="81 - Add a 'customer reply draft' generator f...", page_icon="✨")
 
-st.title("81 – Add A Customer Reply Draft Generator Fro")
+st.title("✨ Add a 'customer reply draft' generator f...")
+st.write("""Add a 'customer reply draft' generator from an incoming support ticket.""")
 
-st.write('Generic text toolbox: basic operations you can apply locally.')
+# Input fields
+input_text = st.text_area("Input:", height=150, placeholder="Enter your input here...")
 
-text = st.text_area('Input text', height=160)
-op = st.selectbox('Operation', ['Echo','Reverse','Uppercase','First sentence','Word count'])
-if st.button('Run'):
-    if op == 'Echo':
-        out = text
-    elif op == 'Reverse':
-        out = text[::-1]
-    elif op == 'Uppercase':
-        out = text.upper()
-    elif op == 'Word count':
-        out = f"Words: {len(text.split())}"
+col1, col2 = st.columns(2)
+with col1:
+    style = st.selectbox("Style:", ["Professional", "Casual", "Creative", "Technical"])
+with col2:
+    length = st.selectbox("Length:", ["Short", "Medium", "Long"])
+
+if st.button("Generate", type="primary"):
+    if input_text.strip():
+        st.subheader("Generated Output")
+        mock_output = f"[{style}, {length}] Generated content based on: {input_text[:100]}..."
+        st.success(mock_output)
+        
+        st.download_button("Download", mock_output, file_name="generated.txt")
     else:
-        out = text.split('.')[0]
-    st.code(out)
+        st.warning("Enter input first.")

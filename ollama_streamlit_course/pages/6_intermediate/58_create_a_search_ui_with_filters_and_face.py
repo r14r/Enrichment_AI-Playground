@@ -1,7 +1,34 @@
 import streamlit as st
 
-st.set_page_config(page_title="58 – Create A Search Ui With Filters And Face", page_icon="📄")
+st.set_page_config(page_title="58 - Create a 'search UI' with filters and fa...", page_icon="🔍")
 
-st.title("58 – Create A Search Ui With Filters And Face")
+st.title("🔍 Create a 'search UI' with filters and fa...")
+st.write("""Create a 'search UI' with filters and faceted navigation over ingested docs.""")
 
-st.write("This is a stub page for the task: Create A Search Ui With Filters And Face")
+query = st.text_input("Search query:")
+
+# Mock data
+documents = [
+    "Document 1: Introduction to machine learning",
+    "Document 2: Deep learning fundamentals",
+    "Document 3: Natural language processing",
+    "Document 4: Computer vision basics",
+    "Document 5: Reinforcement learning overview"
+]
+
+if st.button("Search", type="primary") or query:
+    if query.strip():
+        st.subheader("Search Results")
+        
+        results = [d for d in documents if query.lower() in d.lower()]
+        if not results:
+            results = documents[:3]
+        
+        for i, doc in enumerate(results, 1):
+            with st.expander(f"Result {i}: {doc[:50]}..."):
+                st.write(doc)
+                st.caption("Relevance: High")
+        
+        st.info(f"Found {len(results)} results for '{query}'")
+    else:
+        st.info("Enter a search query")

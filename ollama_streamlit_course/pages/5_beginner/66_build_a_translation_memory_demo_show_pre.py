@@ -1,20 +1,25 @@
 import streamlit as st
 
-st.set_page_config(page_title="66 – Build A Translation Memory Demo Show Pre", page_icon="📄")
+st.set_page_config(page_title="66 - Build a 'translation memory demo': show ...", page_icon="🎯")
 
-st.title("66 – Build A Translation Memory Demo Show Pre")
+st.title("🎯 Build a 'translation memory demo': show ...")
+st.write("""Build a 'translation memory demo': show previous translations and reuse them.""")
 
-st.write('Mock translator: demonstrates target languages and token-count estimation. Replace with real translator/LLM calls later.')
+languages = ["English", "Spanish", "French", "German", "Italian", "Portuguese"]
 
-txt = st.text_area('Text to translate', height=150)
-lang = st.selectbox('Target language', ['Spanish','German','French','Mock-Reverse'])
-if st.button('Translate'):
-    if not txt.strip():
-        st.warning('Enter text to translate')
+col1, col2 = st.columns(2)
+with col1:
+    source = st.selectbox("From:", languages)
+with col2:
+    target = st.selectbox("To:", languages, index=1)
+
+text = st.text_area("Enter text:", height=150)
+
+if st.button("Translate", type="primary"):
+    if text.strip():
+        # Mock translation
+        result = f"[Mock {target} translation of {source} text]: {text[:100]}..."
+        st.subheader("Translation")
+        st.info(result)
     else:
-        if lang == 'Mock-Reverse':
-            out = txt[::-1]
-        else:
-            out = f"[Mock {lang} translation] " + txt
-        st.code(out)
-        st.write('Estimated tokens (approx):', max(1, len(out.split())//1))
+        st.warning("Enter text first.")

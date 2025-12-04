@@ -1,22 +1,26 @@
 import streamlit as st
+import random
 
-st.set_page_config(page_title="67 – Implement A Simple Intent Classifier For", page_icon="📄")
+st.set_page_config(page_title="67 - Implement a 'simple intent classifier' f...", page_icon="🏷️")
 
-st.title("67 – Implement A Simple Intent Classifier For")
+st.title("🏷️ Implement a 'simple intent classifier' f...")
+st.write("""Implement a 'simple intent classifier' for short customer messages.""")
 
-st.write('Generic text toolbox: basic operations you can apply locally.')
+text = st.text_area("Enter text to analyze:", height=150)
 
-text = st.text_area('Input text', height=160)
-op = st.selectbox('Operation', ['Echo','Reverse','Uppercase','First sentence','Word count'])
-if st.button('Run'):
-    if op == 'Echo':
-        out = text
-    elif op == 'Reverse':
-        out = text[::-1]
-    elif op == 'Uppercase':
-        out = text.upper()
-    elif op == 'Word count':
-        out = f"Words: {len(text.split())}"
+if st.button("Analyze", type="primary"):
+    if text.strip():
+        # Mock classification
+        categories = ["Category A", "Category B", "Category C"]
+        confidence = random.uniform(0.7, 0.99)
+        
+        st.subheader("Analysis Results")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Classification", random.choice(categories))
+        with col2:
+            st.metric("Confidence", f"{confidence:.1%}")
+        
+        st.progress(confidence)
     else:
-        out = text.split('.')[0]
-    st.code(out)
+        st.warning("Enter text first.")

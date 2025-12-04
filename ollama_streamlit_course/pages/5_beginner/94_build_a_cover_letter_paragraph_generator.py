@@ -1,18 +1,25 @@
 import streamlit as st
 
-st.set_page_config(page_title="94 – Build A Cover Letter Paragraph Generator", page_icon="📄")
+st.set_page_config(page_title="94 - Build a 'cover letter paragraph' generat...", page_icon="✨")
 
-st.title("94 – Build A Cover Letter Paragraph Generator")
+st.title("✨ Build a 'cover letter paragraph' generat...")
+st.write("""Build a 'cover letter paragraph' generator from job and experience bullets.""")
 
-st.write('Chain-of-thought mock: decompose into subtasks and show intermediate results (local heuristics).')
+# Input fields
+input_text = st.text_area("Input:", height=150, placeholder="Enter your input here...")
 
-q = st.text_input('Question')
-if st.button('Decompose') and q:
-    words = q.split()
-    parts = [ ' '.join(words[i:i+max(1,len(words)//3)]) for i in range(0,len(words), max(1,len(words)//3))][:3]
-    for i,p in enumerate(parts):
-        st.write(f"Step {i+1}: consider '{p}'")
-    st.write('Intermediate conclusions:')
-    for i,p in enumerate(parts):
-        st.write(f"- Conclusion {i+1}: {p[::-1][:40]}")
-    st.write('Final (mock) answer: ' + ' '.join(words[:7]))
+col1, col2 = st.columns(2)
+with col1:
+    style = st.selectbox("Style:", ["Professional", "Casual", "Creative", "Technical"])
+with col2:
+    length = st.selectbox("Length:", ["Short", "Medium", "Long"])
+
+if st.button("Generate", type="primary"):
+    if input_text.strip():
+        st.subheader("Generated Output")
+        mock_output = f"[{style}, {length}] Generated content based on: {input_text[:100]}..."
+        st.success(mock_output)
+        
+        st.download_button("Download", mock_output, file_name="generated.txt")
+    else:
+        st.warning("Enter input first.")
