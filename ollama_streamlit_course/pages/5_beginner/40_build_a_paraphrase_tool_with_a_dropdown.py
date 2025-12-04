@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="40 - Build a 'paraphrase' tool with a dropdow...", page_icon="🎯")
 

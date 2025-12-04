@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="95 - Implement a 'simple taxonomy assigner' f...", page_icon="🎯")
 

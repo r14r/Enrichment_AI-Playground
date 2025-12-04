@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="12 - Implement a 'temperature' slider to show...", page_icon="🎯")
 

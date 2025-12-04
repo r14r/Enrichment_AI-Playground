@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="96 - Create a 'language learning flashcard' g...", page_icon="✨")
 

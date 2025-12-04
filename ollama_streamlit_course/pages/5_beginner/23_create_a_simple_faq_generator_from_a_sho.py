@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="23 - Create a simple FAQ generator from a sho...", page_icon="✨")
 

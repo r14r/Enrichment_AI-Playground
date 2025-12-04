@@ -1,4 +1,5 @@
 import streamlit as st
+import re
 
 st.set_page_config(page_title="37 - Implement a tiny 'emoji recommender' giv...", page_icon="🎯")
 
