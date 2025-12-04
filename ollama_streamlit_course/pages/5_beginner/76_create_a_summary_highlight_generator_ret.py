@@ -1,25 +1,35 @@
 import streamlit as st
+import re
 
-st.set_page_config(page_title="76 – Create A Summary Highlight Generator Ret", page_icon="📄")
+st.set_page_config(page_title="76 - Create a 'summary highlight' generator: ...", page_icon="📝")
 
-st.title("76 – Create A Summary Highlight Generator Ret")
+st.title("📝 Create a 'summary highlight' generator: ...")
+st.write("""Create a 'summary highlight' generator: return the top 3 bullets from a text.""")
 
-st.write('Naive summarizer: extractive heuristic—take the top N sentences by very simple scoring (sentence length + keyword overlap).')
+# Input
+text = st.text_area("Enter text to summarize:", height=200)
+length = st.slider("Summary sentences:", 1, 5, 2)
 
-text = st.text_area('Text to summarize', height=200)
-num = st.slider('Sentences to return', 1, 5, 2)
-if st.button('Summarize'):
-    if not text.strip():
-        st.warning('Paste text to summarize')
-    else:
-        sents = [s.strip() for s in re.split(r'(?<=[.!?])\s+', text) if s.strip()]
-        # score by length and keyword density
-        keywords = set([w.lower() for w in text.split()[:10]])
+if st.button("Summarize", type="primary"):
+    if text.strip():
+        sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+        keywords = set(text.lower().split()[:15])
+        
         scored = []
-        for s in sents:
-            score = len(s)
-            score += sum(1 for w in s.split() if w.lower() in keywords)
-            scored.append((score,s))
-        top = [s for _,s in sorted(scored, reverse=True)[:num]]
-        st.write('
-'.join(top))
+        for s in sentences:
+            score = len(s) + sum(1 for w in s.lower().split() if w in keywords) * 2
+            scored.append((score, s))
+        
+        top = [s for _, s in sorted(scored, reverse=True)[:length]]
+        
+        st.subheader("Summary")
+        for s in top:
+            st.markdown(f"- {s}")
+        
+        original_words = len(text.split())
+        summary_words = len(" ".join(top).split())
+        if original_words > 0:
+            compression = 100 - (summary_words * 100 // original_words)
+            st.metric("Compression", f"{compression}%")
+    else:
+        st.warning("Enter text first.")

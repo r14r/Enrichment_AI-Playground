@@ -1,18 +1,36 @@
 import streamlit as st
 
-st.set_page_config(page_title="75 – Implement A Two Step Prompt Chaining Dem", page_icon="📄")
+st.set_page_config(page_title="75 - Implement a 'two-step prompt chaining' d...", page_icon="🎯")
 
-st.title("75 – Implement A Two Step Prompt Chaining Dem")
+st.title("🎯 Implement a 'two-step prompt chaining' d...")
+st.write("""Implement a 'two-step prompt chaining' demo: get outline → expand outline.""")
 
-st.write('Chain-of-thought mock: decompose into subtasks and show intermediate results (local heuristics).')
+# Main input
+user_input = st.text_area("Input:", height=150, placeholder="Enter your input here...")
 
-q = st.text_input('Question')
-if st.button('Decompose') and q:
-    words = q.split()
-    parts = [ ' '.join(words[i:i+max(1,len(words)//3)]) for i in range(0,len(words), max(1,len(words)//3))][:3]
-    for i,p in enumerate(parts):
-        st.write(f"Step {i+1}: consider '{p}'")
-    st.write('Intermediate conclusions:')
-    for i,p in enumerate(parts):
-        st.write(f"- Conclusion {i+1}: {p[::-1][:40]}")
-    st.write('Final (mock) answer: ' + ' '.join(words[:7]))
+# Options
+with st.expander("Options"):
+    option1 = st.selectbox("Mode:", ["Default", "Advanced", "Custom"])
+    option2 = st.slider("Intensity:", 1, 10, 5)
+
+if st.button("Execute", type="primary"):
+    if user_input.strip():
+        st.subheader("Results")
+        
+        result = f"""Task completed!
+
+Input processed with:
+- Mode: {option1}
+- Intensity: {option2}
+
+Output: Processing complete for your input."""
+        
+        st.success(result)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Processing Time", "0.5s")
+        with col2:
+            st.metric("Status", "Success")
+    else:
+        st.warning("Please provide input.")

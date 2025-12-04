@@ -1,20 +1,35 @@
 import streamlit as st
+import re
 
-st.set_page_config(page_title="30 – Implement A Translate Summarize Sequence", page_icon="📄")
+st.set_page_config(page_title="30 - Implement a 'translate + summarize' sequ...", page_icon="🌐")
 
-st.title("30 – Implement A Translate Summarize Sequence")
+st.title("🌐 Implement a 'translate + summarize' sequ...")
+st.write("""Implement a 'translate + summarize' sequence for short inputs.""")
 
-st.write('Mock translator: demonstrates target languages and token-count estimation. Replace with real translator/LLM calls later.')
+# Input
+text = st.text_area("Enter text to summarize:", height=200)
+length = st.slider("Summary sentences:", 1, 5, 2)
 
-txt = st.text_area('Text to translate', height=150)
-lang = st.selectbox('Target language', ['Spanish','German','French','Mock-Reverse'])
-if st.button('Translate'):
-    if not txt.strip():
-        st.warning('Enter text to translate')
+if st.button("Summarize", type="primary"):
+    if text.strip():
+        sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+        keywords = set(text.lower().split()[:15])
+        
+        scored = []
+        for s in sentences:
+            score = len(s) + sum(1 for w in s.lower().split() if w in keywords) * 2
+            scored.append((score, s))
+        
+        top = [s for _, s in sorted(scored, reverse=True)[:length]]
+        
+        st.subheader("Summary")
+        for s in top:
+            st.markdown(f"- {s}")
+        
+        original_words = len(text.split())
+        summary_words = len(" ".join(top).split())
+        if original_words > 0:
+            compression = 100 - (summary_words * 100 // original_words)
+            st.metric("Compression", f"{compression}%")
     else:
-        if lang == 'Mock-Reverse':
-            out = txt[::-1]
-        else:
-            out = f"[Mock {lang} translation] " + txt
-        st.code(out)
-        st.write('Estimated tokens (approx):', max(1, len(out.split())//1))
+        st.warning("Enter text first.")

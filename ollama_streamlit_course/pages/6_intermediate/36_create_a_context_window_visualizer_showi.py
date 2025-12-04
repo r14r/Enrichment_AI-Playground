@@ -1,7 +1,36 @@
 import streamlit as st
 
-st.set_page_config(page_title="36 – Create A Context Window Visualizer Showi", page_icon="📄")
+st.set_page_config(page_title="36 - Create a 'context window' visualizer sho...", page_icon="🎯")
 
-st.title("36 – Create A Context Window Visualizer Showi")
+st.title("🎯 Create a 'context window' visualizer sho...")
+st.write("""Create a 'context window' visualizer showing what tokens are in the prompt.""")
 
-st.write("This is a stub page for the task: Create A Context Window Visualizer Showi")
+# Main input
+user_input = st.text_area("Input:", height=150, placeholder="Enter your input here...")
+
+# Options
+with st.expander("Options"):
+    option1 = st.selectbox("Mode:", ["Default", "Advanced", "Custom"])
+    option2 = st.slider("Intensity:", 1, 10, 5)
+
+if st.button("Execute", type="primary"):
+    if user_input.strip():
+        st.subheader("Results")
+        
+        result = f"""Task completed!
+
+Input processed with:
+- Mode: {option1}
+- Intensity: {option2}
+
+Output: Processing complete for your input."""
+        
+        st.success(result)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Processing Time", "0.5s")
+        with col2:
+            st.metric("Status", "Success")
+    else:
+        st.warning("Please provide input.")

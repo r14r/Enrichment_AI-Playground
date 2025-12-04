@@ -1,33 +1,38 @@
 import streamlit as st
 
-st.set_page_config(page_title="77 – Add A Role Play Chat With A Fixed Person", page_icon="📄")
+st.set_page_config(page_title="77 - Add a 'role-play chat' with a fixed pers...", page_icon="💬")
 
-st.title("77 – Add A Role Play Chat With A Fixed Person")
+st.title("💬 Add a 'role-play chat' with a fixed pers...")
+st.write("""Add a 'role-play chat' with a fixed persona selection.""")
 
-st.write('Tiny local chat demo (no external LLM). Shows session history, simple rules-based replies, and export.')
+# Initialize session state
+if "chat_77_messages" not in st.session_state:
+    st.session_state["chat_77_messages"] = []
 
-if 'history' not in st.session_state:
-    st.session_state.history = []
+# Configuration sidebar
+with st.sidebar:
+    st.header("Settings")
+    model = st.selectbox("Model:", ["llama2", "mistral", "codellama"])
+    temperature = st.slider("Temperature:", 0.0, 1.0, 0.7)
 
-with st.form('chat'):
-    user = st.text_input('Your message', key=f'input_{num}')
-    persona = st.selectbox('Persona', ['Helpful Assistant','Concise Bot','Enthusiastic Coach'])
-    submitted = st.form_submit_button('Send')
-    if submitted and user:
-        st.session_state.history.append({'who':'User','text':user})
-        # simple rule-based reply
-        if 'how' in user.lower():
-            reply = f"({persona}) Here's a step-by-step hint about {user.split()[0]}..."
-        else:
-            reply = f"({persona}) I heard: {user[::-1]}"  # playful reversed echo
-        st.session_state.history.append({'who':'Bot','text':reply})
+# Display chat messages
+for msg in st.session_state["chat_77_messages"]:
+    with st.chat_message(msg["role"]):
+        st.write(msg["content"])
 
-for entry in st.session_state.history:
-    if entry['who']=='User':
-        st.markdown(f"**You:** {entry['text']}")
-    else:
-        st.info(entry['text'])
+# Chat input
+if prompt := st.chat_input("Type your message..."):
+    st.session_state["chat_77_messages"].append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.write(prompt)
+    
+    # Mock response
+    response = f"[{model}] Response to: {prompt[:50]}..."
+    st.session_state["chat_77_messages"].append({"role": "assistant", "content": response})
+    with st.chat_message("assistant"):
+        st.write(response)
 
-if st.button('Export conversation'):
-    import json
-    st.download_button('Download JSON', json.dumps(st.session_state.history, ensure_ascii=False, indent=2), file_name='conversation.json')
+# Clear button
+if st.button("Clear Chat"):
+    st.session_state["chat_77_messages"] = []
+    st.rerun()

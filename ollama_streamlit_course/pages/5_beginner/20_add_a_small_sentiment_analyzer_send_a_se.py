@@ -1,22 +1,26 @@
 import streamlit as st
+import random
 
-st.set_page_config(page_title="20 – Add A Small Sentiment Analyzer Send A Se", page_icon="📄")
+st.set_page_config(page_title="20 - Add a small sentiment analyzer: send a s...", page_icon="🏷️")
 
-st.title("20 – Add A Small Sentiment Analyzer Send A Se")
+st.title("🏷️ Add a small sentiment analyzer: send a s...")
+st.write("""Add a small sentiment analyzer: send a sentence and classify positive/neutral/negative.""")
 
-st.write('Generic text toolbox: basic operations you can apply locally.')
+text = st.text_area("Enter text to analyze:", height=150)
 
-text = st.text_area('Input text', height=160)
-op = st.selectbox('Operation', ['Echo','Reverse','Uppercase','First sentence','Word count'])
-if st.button('Run'):
-    if op == 'Echo':
-        out = text
-    elif op == 'Reverse':
-        out = text[::-1]
-    elif op == 'Uppercase':
-        out = text.upper()
-    elif op == 'Word count':
-        out = f"Words: {len(text.split())}"
+if st.button("Analyze", type="primary"):
+    if text.strip():
+        # Mock classification
+        categories = ["Category A", "Category B", "Category C"]
+        confidence = random.uniform(0.7, 0.99)
+        
+        st.subheader("Analysis Results")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("Classification", random.choice(categories))
+        with col2:
+            st.metric("Confidence", f"{confidence:.1%}")
+        
+        st.progress(confidence)
     else:
-        out = text.split('.')[0]
-    st.code(out)
+        st.warning("Enter text first.")
