@@ -1,58 +1,51 @@
+import os
 import streamlit as st
+
+from lib.helper_streamlit import load_pages
 
 st.set_page_config(page_title="Ollama + Streamlit – Kursnavigation", page_icon="🤖")
 
-PAGES = {
-    "Ausführlich": [
-        st.Page("pages/A_Detailed/01_install.py", title="01 – Installationscheck", icon="✅", url_path="A01"),
-        st.Page("pages/A_Detailed/02_status.py", title="02 – Status", icon="🩺", url_path="A02"),
-        st.Page("pages/A_Detailed/03_models.py", title="03 – Modelle anzeigen", icon="📦", url_path="A03"),
-        st.Page("pages/A_Detailed/04_pull.py", title="04 – Modell herunterladen", icon="⬇️", url_path="A04"),
-        st.Page("pages/A_Detailed/05_prompt.py", title="05 – Prompt", icon="💬", url_path="A05"),
-        st.Page("pages/A_Detailed/06_chat.py", title="06 – Chat mit Verlauf", icon="💭", url_path="A06"),
-        st.Page("pages/A_Detailed/07_stream.py", title="07 – Streaming", icon="📡", url_path="A07"),
-        st.Page("pages/A_Detailed/08_playground.py", title="08 – Playground", icon="🎯", url_path="A08"),
-        st.Page("pages/A_Detailed/09_summary.py", title="09 – Zusammenfassung", icon="📝", url_path="A09"),
-        st.Page("pages/A_Detailed/10_dashboard.py", title="10 – Dashboard", icon="📊", url_path="A10"),
-        st.Page("pages/A_Detailed/20A_demo_quickchat.py", title="20 – Demo Quickchat", icon="🧪", url_path="A20"),
-        st.Page("pages/A_Detailed/21A_demo_options.py", title="21 – Demo Options", icon="⚙️", url_path="A21"),
-        st.Page("pages/A_Detailed/22A_demo_system_styles.py", title="22 – System Styles", icon="🎨", url_path="A22"),
-        st.Page("pages/A_Detailed/23A_demo_json_output.py", title="23 – JSON Output Demo", icon="🗂️", url_path="A23"),
-        st.Page("pages/A_Detailed/24A_demo_fewshot.py", title="24 – Few-shot Demo", icon="✳️", url_path="A24"),
-        st.Page("pages/A_Detailed/25A_demo_cot_instruction.py", title="25 – CoT Instruction", icon="🧭", url_path="A25"),
-        st.Page("pages/A_Detailed/26A_demo_roleplay.py", title="26 – Roleplay Demo", icon="🎭", url_path="A26"),
-        st.Page("pages/A_Detailed/27A_demo_code_helper.py", title="27 – Code Helper", icon="💻", url_path="A27"),
-        st.Page("pages/A_Detailed/28A_demo_error_explainer.py", title="28 – Error Explainer", icon="🛠️", url_path="A28"),
-        st.Page("pages/A_Detailed/29A_demo_translator.py", title="29 – Translator Demo", icon="🌐", url_path="A29"),
-        st.Page("pages/A_Detailed/30A_demo_prompt_template.py", title="30 – Prompt Template", icon="📑", url_path="A30"),
-    ],
-    "Minimal": [
-        st.Page("pages/B_Minimal/01_install.py", title="01 – Installationscheck", icon="✅", url_path="B01"),
-        st.Page("pages/B_Minimal/02_status.py", title="02 – Status", icon="🩺", url_path="B02"),
-        st.Page("pages/B_Minimal/03_models.py", title="03 – Modelle anzeigen", icon="📦", url_path="B03"),
-        st.Page("pages/B_Minimal/04_pull.py", title="04 – Modell herunterladen", icon="⬇️", url_path="B04"),
-        st.Page("pages/B_Minimal/05_prompt.py", title="05 – Prompt", icon="💬", url_path="B05"),
-        st.Page("pages/B_Minimal/06_chat.py", title="06 – Chat mit Verlauf", icon="💭", url_path="B06"),
-        st.Page("pages/B_Minimal/07_stream.py", title="07 – Streaming", icon="📡", url_path="B07"),
-        st.Page("pages/B_Minimal/08_playground.py", title="08 – Playground", icon="🎯", url_path="B08"),
-        st.Page("pages/B_Minimal/09_summary.py", title="09 – Zusammenfassung", icon="📝", url_path="B09"),
-        st.Page("pages/B_Minimal/10_dashboard.py", title="10 – Dashboard", icon="📊", url_path="B10"),
-        st.Page("pages/B_Minimal/20B_demo_quickchat_min.py", title="20 – Demo Quickchat (Min)", icon="🧪", url_path="B20"),
-        st.Page("pages/B_Minimal/21B_demo_options_min.py", title="21 – Demo Options (Min)", icon="⚙️", url_path="B21"),
-        st.Page("pages/B_Minimal/22B_demo_system_styles_min.py", title="22 – System Styles (Min)", icon="🎨", url_path="B22"),
-        st.Page("pages/B_Minimal/23B_demo_json_output_min.py", title="23 – JSON Output Demo (Min)", icon="🗂️", url_path="B23"),
-        st.Page("pages/B_Minimal/24B_demo_fewshot_min.py", title="24 – Few-shot Demo (Min)", icon="✳️", url_path="B24"),
-        st.Page("pages/B_Minimal/25B_demo_cot_instruction_min.py", title="25 – CoT Instruction (Min)", icon="🧭", url_path="B25"),
-        st.Page("pages/B_Minimal/26B_demo_roleplay_min.py", title="26 – Roleplay Demo (Min)", icon="🎭", url_path="B26"),
-        st.Page("pages/B_Minimal/27B_demo_code_helper_min.py", title="27 – Code Helper (Min)", icon="💻", url_path="B27"),
-        st.Page("pages/B_Minimal/28B_demo_error_explainer_min.py", title="28 – Error Explainer (Min)", icon="🛠️", url_path="B28"),
-        st.Page("pages/B_Minimal/29B_demo_translator_min.py", title="29 – Translator Demo (Min)", icon="🌐", url_path="B29"),
-        st.Page("pages/B_Minimal/30B_demo_prompt_template_min.py", title="30 – Prompt Template (Min)", icon="📑", url_path="B30"),
-    ],
-    "Tools": [
-    st.Page("template_generator.py", title="Template Generator", icon="🛠️", url_path="tools_template_generator"),
-    ]
+FOLDER = os.path.join(os.path.dirname(__file__), "pages")
+
+ICONS = {
+    "01_install": "✅",
+    "02_status": "🩺",
+    "03_models": "📦",
+    "04_pull": "⬇️",
+    "05_prompt": "💬",
+    "06_chat": "💭",
+    "07_stream": "📡",
+    "08_playground": "🎯",
+    "09_summary": "📝",
+    "10_dashboard": "📊",
+    "20_quickchat": "💡",
+    "21_options": "⚙️",
+    "22_system_styles": "🧩",
+    "23_json_output": "🧾",
+    "24_fewshot": "📚",
+    "25_cot_instruction": "🧠",
+    "26_roleplay": "🎭",
+    "27_code_helper": "💻",
+    "28_error_explainer": "⚠️",
+    "29_translator": "🌐",
+    "30_prompt_template": "📋",
+    "31_media_image_analyze": "🖼️",
+    "32_media_image_promptgen": "🎨",
+    "33_content_correct": "✏️",
+    "34_content_summarize": "📑",
+    "35_create_email": "📧",
+    "36_create_blog": "📰",
 }
+
+PAGES = load_pages(FOLDER, ICONS)
+PAGES["Tools"] = [
+    st.Page(
+        "template_generator.py",
+        title="Template Generator",
+        icon="🛠️",
+        url_path="tools_template_generator",
+    )
+]
 
 nav = st.navigation(PAGES)
 nav.run()
