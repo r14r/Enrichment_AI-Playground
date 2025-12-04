@@ -1,9 +1,10 @@
 import streamlit as st
-import ollama
 
-st.set_page_config(page_title="3 - Create a streaming chat UI that displays...", page_icon="💬")
+from lib.helper_ollama import generate
 
-st.title("💬 Create a streaming chat UI that displays...")
+st.set_page_config(page_title="3 - Create a streaming chat UI", page_icon="💬")
+
+st.title("💬 Create a streaming chat UI")
 st.write("""Create a streaming chat UI that displays partial responses as the model streams.""")
 
 # Initialize session state
@@ -27,14 +28,9 @@ if prompt := st.chat_input("Type your message..."):
     with st.chat_message("user"):
         st.write(prompt)
     
-    # Mock response
-    response = f"[{model}] Response to: {prompt[:50]}..."
-    response = ollama.generate(
-        model=model,
-        prompt=prompt,
-        options={"temperature": temperature, "stream": False},
-    )
-
+    # response
+    response = generate(model=model,prompt=prompt)
+    
     st.session_state["chat_3_messages"].append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
         st.write(response)
