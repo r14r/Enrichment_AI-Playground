@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="4 - Create a simple conversation log (in-mem...", page_icon="💬")
 
@@ -26,8 +29,17 @@ if prompt := st.chat_input("Type your message..."):
     with st.chat_message("user"):
         st.write(prompt)
     
-    # Mock response
-    response = f"[{model}] Response to: {prompt[:50]}..."
+    # Real Ollama call
+    try:
+        from lib.helper_ollama import get_chat_response
+        response = get_chat_response(
+            model=model,
+            user_message=prompt,
+            history=st.session_state["chat_4_messages"][:-1] if len(st.session_state["chat_4_messages"]) > 1 else None,
+            temperature=temperature,
+        )
+    except Exception as e:
+        response = f"Error: {e}"
     st.session_state["chat_4_messages"].append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
         st.write(response)

@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="15 - Add a privacy-preserving pipeline for ma...", page_icon="🎯")
 
@@ -17,13 +20,17 @@ if st.button("Execute", type="primary"):
     if user_input.strip():
         st.subheader("Results")
         
-        result = f"""Task completed!
-
-Input processed with:
-- Mode: {option1}
-- Intensity: {option2}
-
-Output: Processing complete for your input."""
+        # Real Ollama call
+        try:
+            from lib.helper_ollama import generate_content
+            result = generate_content(
+                model="llama3.2",
+                prompt=user_input,
+                style=option1.lower() if option1 != "Default" else "professional",
+                length="medium",
+            )
+        except Exception as e:
+            result = f"Error: {e}"
         
         st.success(result)
         

@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="61 - Add a 'copy-to-clipboard' button for gen...", page_icon="✨")
 
@@ -17,9 +20,19 @@ with col2:
 if st.button("Generate", type="primary"):
     if input_text.strip():
         st.subheader("Generated Output")
-        mock_output = f"[{style}, {length}] Generated content based on: {input_text[:100]}..."
-        st.success(mock_output)
+        # Real Ollama call
+        try:
+            from lib.helper_ollama import generate_content
+            output = generate_content(
+                model="llama3.2",
+                prompt=input_text,
+                style=style.lower(),
+                length=length.lower(),
+            )
+        except Exception as e:
+            output = f"Error: {e}"
+        st.success(output)
         
-        st.download_button("Download", mock_output, file_name="generated.txt")
+        st.download_button("Download", output, file_name="generated.txt")
     else:
         st.warning("Enter input first.")
