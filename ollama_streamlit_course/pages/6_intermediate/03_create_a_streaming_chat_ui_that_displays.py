@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from lib.helper_ollama import generate
 
@@ -28,9 +31,23 @@ if prompt := st.chat_input("Type your message..."):
     with st.chat_message("user"):
         st.write(prompt)
     
+<<<<<<< HEAD
+    # Real Ollama call
+    try:
+        from lib.helper_ollama import get_chat_response
+        response = get_chat_response(
+            model=model,
+            user_message=prompt,
+            history=st.session_state["chat_3_messages"][:-1] if len(st.session_state["chat_3_messages"]) > 1 else None,
+            temperature=temperature,
+        )
+    except Exception as e:
+        response = f"Error: {e}"
+=======
     # response
     response = generate(model=model,prompt=prompt)
     
+>>>>>>> main
     st.session_state["chat_3_messages"].append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
         st.write(response)

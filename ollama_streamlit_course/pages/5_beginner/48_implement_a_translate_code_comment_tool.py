@@ -1,4 +1,7 @@
 import streamlit as st
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(page_title="48 - Implement a 'translate code comment' too...", page_icon="💻")
 
@@ -17,8 +20,17 @@ text = st.text_area("Enter text:", height=150)
 
 if st.button("Translate", type="primary"):
     if text.strip():
-        # Mock translation
-        result = f"[Mock {target} translation of {source} text]: {text[:100]}..."
+        # Real Ollama call
+        try:
+            from lib.helper_ollama import translate_text
+            result = translate_text(
+                model="llama3.2",
+                text=text,
+                source_language=source,
+                target_language=target,
+            )
+        except Exception as e:
+            result = f"Error: {e}"
         st.subheader("Translation")
         st.info(result)
     else:
