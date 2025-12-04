@@ -26,7 +26,7 @@ if st.button("Analyze", type="primary"):
                 result = json.loads(response)
                 classification = result.get("classification", "Unknown")
                 confidence = float(result.get("confidence", 0.85))
-            except:
+            except (json.JSONDecodeError, ValueError, KeyError):
                 classification = response[:50] if len(response) > 50 else response
                 confidence = 0.85
         except Exception as e:
