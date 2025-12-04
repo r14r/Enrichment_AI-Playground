@@ -3,9 +3,11 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-st.set_page_config(page_title="3 - Create a streaming chat UI that displays...", page_icon="💬")
+from lib.helper_ollama import generate
 
-st.title("💬 Create a streaming chat UI that displays...")
+st.set_page_config(page_title="3 - Create a streaming chat UI", page_icon="💬")
+
+st.title("💬 Create a streaming chat UI")
 st.write("""Create a streaming chat UI that displays partial responses as the model streams.""")
 
 # Initialize session state
@@ -15,7 +17,7 @@ if "chat_3_messages" not in st.session_state:
 # Configuration sidebar
 with st.sidebar:
     st.header("Settings")
-    model = st.selectbox("Model:", ["llama2", "mistral", "codellama"])
+    model = st.selectbox("Model:", ["llama3.2", "mistral", "codellama"])
     temperature = st.slider("Temperature:", 0.0, 1.0, 0.7)
 
 # Display chat messages
@@ -29,6 +31,7 @@ if prompt := st.chat_input("Type your message..."):
     with st.chat_message("user"):
         st.write(prompt)
     
+<<<<<<< HEAD
     # Real Ollama call
     try:
         from lib.helper_ollama import get_chat_response
@@ -40,6 +43,11 @@ if prompt := st.chat_input("Type your message..."):
         )
     except Exception as e:
         response = f"Error: {e}"
+=======
+    # response
+    response = generate(model=model,prompt=prompt)
+    
+>>>>>>> main
     st.session_state["chat_3_messages"].append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
         st.write(response)

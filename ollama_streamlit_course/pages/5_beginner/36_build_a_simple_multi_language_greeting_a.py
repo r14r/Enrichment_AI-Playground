@@ -1,7 +1,11 @@
 import streamlit as st
+<<<<<<< HEAD
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+=======
+import re
+>>>>>>> main
 
 st.set_page_config(page_title="36 - Build a simple multi-language greeting a...", page_icon="🎯")
 

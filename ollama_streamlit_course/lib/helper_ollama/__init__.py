@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Helper module for Ollama API interactions.
 
@@ -294,3 +295,15 @@ def answer_question(
         system_prompt=system_prompt,
         temperature=temperature,
     )
+=======
+import ollama
+
+def generate(prompt, model="llama3.2", options=None):
+    try:
+        response = ollama.generate(model=model,prompt=prompt)
+        response = response.response
+    except Exception as e:
+        response = f"Error: {str(e)}"
+    
+    return response
+>>>>>>> main
