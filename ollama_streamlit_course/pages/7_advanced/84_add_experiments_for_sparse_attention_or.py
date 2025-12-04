@@ -1,0 +1,7 @@
+import streamlit as st
+
+st.set_page_config(page_title="84 – Add Experiments For Sparse Attention Or", page_icon="📄")
+
+st.title("84 – Add Experiments For Sparse Attention Or")
+
+st.write("This is a stub page for the task: Add Experiments For Sparse Attention Or")
